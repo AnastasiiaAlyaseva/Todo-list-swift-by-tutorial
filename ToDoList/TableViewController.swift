@@ -9,6 +9,10 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    @IBAction func pushEditAction(_ sender: Any) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+    }
+    
     @IBAction func pushAddAction(_ sender: Any) {
             let alertController = UIAlertController(title: "Create new item", message: nil, preferredStyle: .alert)
             
@@ -59,24 +63,24 @@ class TableViewController: UITableViewController {
         let currentItem = ToDoItems[indexPath.row]
         cell.textLabel?.text = currentItem["Name"] as? String
         if (currentItem["isCompleted"] as? Bool) == true {
-            cell.accessoryType = .checkmark
+            cell.imageView?.image = UIImage(named: "check")
         } else {
-            cell.accessoryType = .none
+            cell.imageView?.image = UIImage(named: "uncheck")
         }
 
         return cell
     }
 
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
- */
-    /*
+ 
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -91,14 +95,14 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if changeState(at: indexPath.row) {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            tableView.cellForRow(at: indexPath)?.imageView?.image = UIImage(named: "check")
         } else {
             
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            tableView.cellForRow(at: indexPath)?.imageView?.image = UIImage(named: "uncheck")
         }
     }
         
-      */
+    
         
         
     
@@ -106,6 +110,9 @@ class TableViewController: UITableViewController {
     //*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        moveItem(fromIndex: fromIndexPath.row, toIndex: to.row)
+        tableView.reloadData()
+        
 
     }
     

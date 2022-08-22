@@ -16,20 +16,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Cell" textLabel="x4D-hi-JwB" style="IBUITableViewCellStyleDefault" id="sLl-V6-V9Q">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="x4D-hi-JwB" imageView="4xl-od-R4N" style="IBUITableViewCellStyleDefault" id="sLl-V6-V9Q">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sLl-V6-V9Q" id="3j7-jX-v6M">
-                                    <rect key="frame" x="0.0" y="0.0" width="373.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4D-hi-JwB">
-                                            <rect key="frame" x="20" y="0.0" width="345.5" height="43.5"/>
+                                            <rect key="frame" x="62" y="0.0" width="332" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="uncheck" id="4xl-od-R4N">
+                                            <rect key="frame" x="20" y="8" width="27" height="27"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -40,11 +44,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ToDo Items" id="3dm-Wo-dQI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GQQ-Rx-6w5">
-                            <connections>
-                                <action selector="pushAddAction:" destination="GW9-Hz-4y3" id="fPn-r2-anu"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="GQQ-Rx-6w5">
+                                <connections>
+                                    <action selector="pushAddAction:" destination="GW9-Hz-4y3" id="fPn-r2-anu"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="eaT-0n-McK">
+                                <connections>
+                                    <action selector="pushEditAction:" destination="GW9-Hz-4y3" id="FTW-qQ-PSo"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEr-sI-bEf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -71,6 +82,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="uncheck" width="27" height="27"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
