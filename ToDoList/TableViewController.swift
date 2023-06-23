@@ -1,10 +1,3 @@
-//
-//  TableViewController.swift
-//  ToDoList
-//
-//  Created by Anastasiia Alyaseva on 16.08.2022.
-//
-
 import UIKit
 
 class TableViewController: UITableViewController {
@@ -17,17 +10,19 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func pushAddAction(_ sender: Any) {
-            let alertController = UIAlertController(title: "Create new item", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(
+                title: "Create new item",
+                message: nil,
+                preferredStyle: .alert
+            )
             
             alertController.addTextField { (textField) in
                 textField.placeholder = "New item name"
             }
             
-            let alertAction1 = UIAlertAction(title: "Cancel", style: .default) { (alert) in
-                
-            }
+            let alertAction1 = UIAlertAction(title: "Cancel", style: .default)
             let alertAction2 = UIAlertAction(title: "Create", style: .cancel) { (alert) in
-               let newItem = alertController.textFields![0].text
+                let newItem = alertController.textFields![0].text
                 if newItem != "" {
                     addItem(nameItem: newItem!)
                     self.tableView.reloadData()
@@ -37,15 +32,10 @@ class TableViewController: UITableViewController {
         alertController.addAction(alertAction1)
         alertController.addAction(alertAction2)
         present(alertController, animated: true, completion: nil)
-        
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -65,11 +55,11 @@ class TableViewController: UITableViewController {
         return ToDoItems.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let currentItem = ToDoItems[indexPath.row]
         cell.textLabel?.text = currentItem["Name"] as? String
+        
         if (currentItem["isCompleted"] as? Bool) == true {
             cell.imageView?.image = UIImage(named: "check")
         } else {
@@ -87,23 +77,25 @@ class TableViewController: UITableViewController {
     }
 
 
-    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
- 
-    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath)
+    {
         if editingStyle == .delete {
             // Delete the row from the data source
             removeItem(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            // Create a new instance of the appropriate class,
+            // insert it into the array, and add a new row to the table view
         }    
     }
     
@@ -112,24 +104,17 @@ class TableViewController: UITableViewController {
         if changeState(at: indexPath.row) {
             tableView.cellForRow(at: indexPath)?.imageView?.image = UIImage(named: "check")
         } else {
-            
             tableView.cellForRow(at: indexPath)?.imageView?.image = UIImage(named: "uncheck")
         }
     }
-        
-    
-        
-        
-    
 
     //*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         moveItem(fromIndex: fromIndexPath.row, toIndex: to.row)
         tableView.reloadData()
-        
-
     }
+    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if tableView.isEditing {
         return .none
@@ -141,6 +126,8 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -159,4 +146,3 @@ class TableViewController: UITableViewController {
     }
     */
 }
- 
